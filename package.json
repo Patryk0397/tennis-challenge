@@ -1,0 +1,21 @@
+{
+  "name": "tennis-challenge",
+  "version": "1.0.0",
+  "description": "Tennis coding challenge by DIUS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Patryk0397/tennis-challenge"
+  },
+  "author": "Patryk Orsztynowicz",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  },
+  "type": "module"
+}

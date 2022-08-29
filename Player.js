@@ -13,4 +13,8 @@ export default class Player {
   addSetPoint = () => {
     this.setScore++;
   };
+
+  resetScore = () => {
+    this.gameScore = 0;
+  };
 }

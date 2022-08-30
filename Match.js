@@ -35,8 +35,8 @@ export default class Match {
     if (player1Score > 3 || player2Score > 3) {
       let difference = player1Score - player2Score;
       if (difference === 0) return "Deuce";
-      else if (difference === 1) return `${this.player1.name}'s advantage`;
-      else if (difference === -1) return `${this.player2.name}'s advantage`;
+      else if (difference === 1) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player1.name}`;
+      else if (difference === -1) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player2.name}`;
       else if (difference >= 2) {
         this.winner = this.player1.name;
         this.player1.addGamePoint();
@@ -48,9 +48,9 @@ export default class Match {
         this.resetGame();
         return this.score();
       }
-    } else if (player1Score === 3 && player2Score === 3) return "Deuce";
+    } else if (player1Score === 3 && player2Score === 3) return `${this.player1.gameScore}-${this.player2.gameScore}, Deuce`;
 
-    return `${this.player1.gameScore}-${this.player2.gameScore} ${
+    return `${this.player1.gameScore}-${this.player2.gameScore}, ${
       scoreMap[this.player1.score]
     }-${scoreMap[this.player2.score]}`;
   };
@@ -59,9 +59,9 @@ export default class Match {
   calculateTieBreakScore = (player1Score, player2Score) => {
     if (player1Score > 6 || player2Score > 6) {
       let difference = player1Score - player2Score;
-      if (difference === 0) return "Deuce";
-      else if (difference === 1) return `${this.player1.name}'s advantage`;
-      else if (difference === -1) return `${this.player2.name}'s advantage`;
+      if (difference === 0) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player1.name}`;
+      else if (difference === 1) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player1.name}`;
+      else if (difference === -1) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player2.name}`;
       else if (difference >= 2) {
         this.winner = this.player1.name;
         this.player1.addGamePoint();
@@ -71,9 +71,9 @@ export default class Match {
         this.player2.addGamePoint();
         return `Set Score: 0-1 further functionality not required for this exercise`;
       }
-    } else if (player1Score === 7 && player2Score === 7) return "Deuce";
+    } else if (player1Score === 7 && player2Score === 7) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player1.name}`;
 
-    return `${this.player1.gameScore}-${this.player2.gameScore} ${this.player1.score}-${this.player2.score}`;
+    return `${this.player1.gameScore}-${this.player2.gameScore}, ${this.player1.score}-${this.player2.score}`;
   };
 
   // Checks the score and provides the current result

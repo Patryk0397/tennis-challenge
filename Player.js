@@ -2,19 +2,23 @@
 export default class Player {
   constructor(name) {
     this.name = name;
+    this.score = 0;
     this.gameScore = 0;
-    this.setScore = 0;
   }
 
   addPoint = () => {
+    this.score++;
+  };
+
+  addGamePoint = () => {
     this.gameScore++;
   };
 
-  addSetPoint = () => {
-    this.setScore++;
+  resetScore = () => {
+    this.score = 0;
   };
 
-  resetScore = () => {
+  resetGameScore = () => {
     this.gameScore = 0;
   };
 }

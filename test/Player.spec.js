@@ -16,6 +16,7 @@ describe('Player', () => {
     });
     it('Should have players score set to 0 on initialization', () => {
       assert.equal(player.gameScore, 0);
+      assert.equal(player.score, 0);
     });
   });
   describe('addPoint', () => {
@@ -23,9 +24,9 @@ describe('Player', () => {
       assert.isDefined(player.addPoint);
     });
     it('Should add a point to the players score', () => {
-      assert.equal(player.gameScore, 0);
+      assert.equal(player.score, 0);
       player.addPoint();
-      assert.equal(player.gameScore, 1);
+      assert.equal(player.score, 1);
     });
   });
 });

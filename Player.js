@@ -17,4 +17,8 @@ export default class Player {
   resetScore = () => {
     this.score = 0;
   };
+
+  resetGameScore = () => {
+    this.gameScore = 0;
+  };
 }

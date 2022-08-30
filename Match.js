@@ -34,7 +34,7 @@ export default class Match {
   calculateGameScore = (player1Score, player2Score) => {
     if (player1Score > 3 || player2Score > 3) {
       let difference = player1Score - player2Score;
-      if (difference === 0) return "Deuce";
+      if (difference === 0) return `${this.player1.gameScore}-${this.player2.gameScore}, Deuce`;
       else if (difference === 1) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player1.name}`;
       else if (difference === -1) return `${this.player1.gameScore}-${this.player2.gameScore}, Advantage ${this.player2.name}`;
       else if (difference >= 2) {

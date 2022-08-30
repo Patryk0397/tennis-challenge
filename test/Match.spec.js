@@ -41,7 +41,7 @@ describe('Match', () => {
       assert.isDefined(match.score);
     });
     it('Should return 0-0 0-0', function () {
-      assert.equal(match.score(), '0-0 0-0');
+      assert.equal(match.score(), '0-0, 0-0');
     });
     it('Should have an undefined winner', () => {
       assert.isUndefined(match.winner);
@@ -49,41 +49,41 @@ describe('Match', () => {
     it('Should return scores when no player has won the set', () => {
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.equal(match.score(), '0-0 15-15');
+      assert.equal(match.score(), '0-0, 15-15');
 
       match.pointWonBy("Player1");
-      assert.equal(match.score(), '0-0 30-15');
+      assert.equal(match.score(), '0-0, 30-15');
 
       match.pointWonBy("Player2");
-      assert.equal(match.score(), '0-0 30-30');
+      assert.equal(match.score(), '0-0, 30-30');
 
       match.pointWonBy("Player1");
-      assert.equal(match.score(), '0-0 40-30');
+      assert.equal(match.score(), '0-0, 40-30');
     });
     it('Should return Deuce when both players have scored 3 points', () => {
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), 'Deuce');
+      assert.notEqual(match.score(), '0-0, Deuce');
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), 'Deuce');
+      assert.notEqual(match.score(), '0-0, Deuce');
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.equal(match.score(), 'Deuce');
+      assert.equal(match.score(), '0-0, Deuce');
     });
     it('Should return Deuce when both players have the same score above 3 points', () => {
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), 'Deuce');
+      assert.notEqual(match.score(), '0-0, Deuce');
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), 'Deuce');
+      assert.notEqual(match.score(), '0-0, Deuce');
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.equal(match.score(), 'Deuce');
+      assert.equal(match.score(), '0-0, Deuce');
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.equal(match.score(), 'Deuce');
+      assert.equal(match.score(), '0-0, Deuce');
     });
     it('Should return Advantage when player 1 has scored 4 points and player 2 has scored 3 points', () => {
       match.pointWonBy("Player1");
@@ -107,7 +107,7 @@ describe('Match', () => {
       match.pointWonBy("Player1");
       match.pointWonBy("Player1");
       match.pointWonBy("Player1");
-      assert.equal(match.score(), "1-0 0-0");
+      assert.equal(match.score(), "1-0, 0-0");
     });
     it('Should return 0-1 when player 2 has 4 or more points and are leading by 2', () => {
       match.pointWonBy("Player2");
@@ -115,7 +115,7 @@ describe('Match', () => {
       match.pointWonBy("Player2");
       match.pointWonBy("Player2");
       match.pointWonBy("Player2");
-      assert.equal(match.score(), "0-1 0-0");
+      assert.equal(match.score(), "0-1, 0-0");
     });
     it("Should set tiebreak to true when both players have 6 games", () => {
       match.pointWonBy("Player1");
@@ -178,7 +178,7 @@ describe('Match', () => {
       match.pointWonBy("Player2");
       match.pointWonBy("Player2");
 
-      assert.equal(match.score(), "6-6 0-0");
+      assert.equal(match.score(), "6-6, 0-0");
       assert.equal(match.tieBreak, true);
     });
     it("Should finish the set after 7 points when tiebreak is true", () => {
@@ -242,7 +242,7 @@ describe('Match', () => {
       match.pointWonBy("Player2");
       match.pointWonBy("Player2");
 
-      assert.equal(match.score(), "6-6 0-0");
+      assert.equal(match.score(), "6-6, 0-0");
       assert.equal(match.tieBreak, true);
 
       match.pointWonBy("Player2");

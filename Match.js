@@ -7,6 +7,7 @@ export default class Match {
     // Initializes two player objects
     this.player1 = new Player(player1);
     this.player2 = new Player(player2);
+    this.tieBreak = false;
   }
 
   // Adds a point to a selected player
@@ -20,13 +21,17 @@ export default class Match {
     this.player1.resetScore();
     this.player2.resetScore();
     this.winner = undefined;
+
+    if (this.player1.gameScore === 6 && this.player2.gameScore === 6) {
+      this.setTieBreak(true);
+    }
   };
 
-  // Checks the score and provides the current result
-  score = () => {
-    let player1Score = this.player1.gameScore;
-    let player2Score = this.player2.gameScore;
+  setTieBreak = (tieBreak) => {
+    this.tieBreak = tieBreak;
+  };
 
+  calculateGameScore = (player1Score, player2Score) => {
     if (player1Score > 3 || player2Score > 3) {
       let difference = player1Score - player2Score;
       if (difference === 0) return "Deuce";
@@ -34,19 +39,48 @@ export default class Match {
       else if (difference === -1) return `${this.player2.name}'s advantage`;
       else if (difference >= 2) {
         this.winner = this.player1.name;
-        this.player1.addSetPoint();
+        this.player1.addGamePoint();
         this.resetGame();
         return this.score();
       } else if (difference <= -2) {
         this.winner = this.player2.name;
-        this.player2.addSetPoint();
+        this.player2.addGamePoint();
         this.resetGame();
         return this.score();
       }
     } else if (player1Score === 3 && player2Score === 3) return "Deuce";
 
-    return `${this.player1.setScore}-${this.player2.setScore} ${
-      scoreMap[this.player1.gameScore]
-    }-${scoreMap[this.player2.gameScore]}`;
+    return `${this.player1.gameScore}-${this.player2.gameScore} ${
+      scoreMap[this.player1.score]
+    }-${scoreMap[this.player2.score]}`;
+  };
+
+  // Separated from calculateGameScore for readability
+  calculateTieBreakScore = (player1Score, player2Score) => {
+    if (player1Score > 6 || player2Score > 6) {
+      let difference = player1Score - player2Score;
+      if (difference === 0) return "Deuce";
+      else if (difference === 1) return `${this.player1.name}'s advantage`;
+      else if (difference === -1) return `${this.player2.name}'s advantage`;
+      else if (difference >= 2) {
+        this.winner = this.player1.name;
+        this.player1.addGamePoint();
+        return `Set Score: 1-0 further functionality not required for this exercise`;
+      } else if (difference <= -2) {
+        this.winner = this.player2.name;
+        this.player2.addGamePoint();
+        return `Set Score: 0-1 further functionality not required for this exercise`;
+      }
+    } else if (player1Score === 7 && player2Score === 7) return "Deuce";
+
+    return `${this.player1.gameScore}-${this.player2.gameScore} ${this.player1.score}-${this.player2.score}`;
+  };
+
+  // Checks the score and provides the current result
+  score = () => {
+    if (!this.tieBreak)
+      return this.calculateGameScore(this.player1.score, this.player2.score);
+
+    return this.calculateTieBreakScore(this.player1.score, this.player2.score);
   };
 }

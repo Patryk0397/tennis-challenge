@@ -88,18 +88,18 @@ describe('Match', () => {
     it('Should return Advantage when player 1 has scored 4 points and player 2 has scored 3 points', () => {
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), "Player1's advantage");
+      assert.notEqual(match.score(), "0-0, Advantage Player1");
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), "Player1's advantage");
+      assert.notEqual(match.score(), "0-0, Advantage Player1");
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), "Player1's advantage");
+      assert.notEqual(match.score(), "0-0, Advantage Player1");
       match.pointWonBy("Player1");
       match.pointWonBy("Player2");
-      assert.notEqual(match.score(), "Player1's advantage");
+      assert.notEqual(match.score(), "0-0, Advantage Player1");
       match.pointWonBy("Player1");
-      assert.equal(match.score(), "Player1's advantage");
+      assert.equal(match.score(), "0-0, Advantage Player1");
     });
     it('Should return 1-0 when player 1 has 4 or more points and are leading by 2', () => {
       match.pointWonBy("Player2");
